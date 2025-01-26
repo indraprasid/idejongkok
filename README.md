@@ -1,0 +1,2 @@
+# idejongkok
+Bootcamp idejongkok
