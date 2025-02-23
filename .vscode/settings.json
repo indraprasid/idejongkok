@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./tugas/tugas4/venv-tugas4/Lib/site-packages"
+    ]
+}
