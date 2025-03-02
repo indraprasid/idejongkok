@@ -5,65 +5,103 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
-# 🔹 Inisialisasi WebDriver (Pastikan ChromeDriver sudah ada di PATH)
+# Inisialisasi WebDriver Chrome
 driver = webdriver.Chrome()
 
-# 🔹 Atur Implicit Wait (Menunggu elemen hingga 10 detik sebelum error)
+# Implicit Wait (Menunggu elemen hingga 10 detik sebelum error)
 driver.implicitly_wait(10)
 
-# 🔹 Buka halaman demo alert
+# Buka halaman demo alert
 driver.get("https://demoqa.com/alerts")
 driver.maximize_window()
 
-# 🔹 Inisialisasi Explicit Wait
+# Inisialisasi Explicit Wait
 wait = WebDriverWait(driver, 10)
 
+def wait_between_steps(seconds=5):
+    # Menunggu beberapa detik sebelum lanjut ke langkah berikutnya
+    try:
+        WebDriverWait(driver, seconds).until(EC.alert_is_present())
+    except TimeoutException:
+        pass
+
 # ===========================================================
-# 📌 1. Handle Basic Alert
+# 1. Handle Basic Alert
 print("\n🔹 Menguji Basic Alert...")
 try:
     driver.find_element(By.ID, "alertButton").click()
-    alert = wait.until(EC.alert_is_present())  # Tunggu hingga alert muncul
-    print("✅ Basic Alert muncul dengan teks:", alert.text)
+    alert = wait.until(EC.alert_is_present())  # Beberapa detik hingga alert tampil
+    print("✅ Basic Alert tampil dengan teks:", alert.text)
+    
+    wait_between_steps()  # Jeda sebelum klik OK
     alert.accept()
 except TimeoutException:
-    print("❌ Basic Alert tidak muncul!")
+    print("❌ Basic Alert tidak tampil!")
+
+wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
-# 📌 2. Handle Confirm Alert
+# 2. Handle Confirm Alert
 print("\n🔹 Menguji Confirm Alert...")
 try:
     driver.find_element(By.ID, "confirmButton").click()
     alert = wait.until(EC.alert_is_present())
-    print("✅ Confirm Alert muncul dengan teks:", alert.text)
-    alert.dismiss()  # Bisa pakai alert.accept() untuk "OK"
+    print("✅ Confirm Alert tampil dengan teks:", alert.text)
+    
+    wait_between_steps()  # Jeda sebelum klik Cancel
+    alert.dismiss()
+
+    # Validasi apakah hasilnya "You selected Cancel"
+    confirmResult = wait.until(EC.presence_of_element_located((By.ID, "confirmResult"))).text
+    if confirmResult == "You selected Cancel":
+        print("✅ Validasi sukses: Teks yang muncul adalah", confirmResult)
+    else:
+        print("❌ Validasi gagal: Teks yang muncul adalah", confirmResult)
+
 except TimeoutException:
-    print("❌ Confirm Alert tidak muncul!")
+    print("❌ Confirm Alert tidak tampil!")
+
+wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
-# 📌 3. Handle Prompt Alert
+# 3. Handle Prompt Alert
 print("\n🔹 Menguji Prompt Alert...")
 try:
     driver.find_element(By.ID, "promtButton").click()
     alert = wait.until(EC.alert_is_present())
-    print("✅ Prompt Alert muncul dengan teks:", alert.text)
-    alert.send_keys("ChatGPT")  # Input teks ke prompt
+    print("✅ Prompt Alert tampil dengan teks:", alert.text)
+    
+    alert.send_keys("Joane Indra Prasetyawan")  # Input teks ke prompt
+    wait_between_steps()  # Jeda sebelum klik OK
     alert.accept()  # Klik OK
+
+    # Validasi apakah hasilnya "You entered ..."
+    promptResult = wait.until(EC.presence_of_element_located((By.ID, "promptResult"))).text
+    if promptResult == "You entered Joane Indra Prasetyawan":
+        print("✅ Validasi sukses: Teks yang muncul adalah", promptResult)
+    else:
+        print("❌ Validasi gagal: Teks yang muncul adalah", promptResult)
+
 except TimeoutException:
-    print("❌ Prompt Alert tidak muncul!")
+    print("❌ Prompt Alert tidak tampil!")
+
+wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
-# 📌 4. Handle Timer Alert (Delayed Alert)
+# 4. Handle Timer Alert (Delayed Alert)
 print("\n🔹 Menguji Timer Alert...")
 try:
     driver.find_element(By.ID, "timerAlertButton").click()
     alert = wait.until(EC.alert_is_present())
-    print("✅ Timer Alert muncul dengan teks:", alert.text)
+    print("✅ Timer Alert tampil dengan teks:", alert.text)
+    
+    wait_between_steps()  # Jeda sebelum klik OK
     alert.accept()
 except TimeoutException:
-    print("❌ Timer Alert tidak muncul!")
+    print("❌ Timer Alert tidak tampil!")
+
+wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
-# 🔹 Tutup browser setelah semua pengujian selesai
-print("\n✅ Semua pengujian selesai! Menutup browser...")
+# Tutup browser setelah semua pengujian selesai
 driver.quit()
