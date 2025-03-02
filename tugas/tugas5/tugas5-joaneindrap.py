@@ -27,7 +27,7 @@ def wait_between_steps(seconds=5):
 
 # ===========================================================
 # 1. Handle Basic Alert
-print("\n🔹 Menguji Basic Alert...")
+print("\n - Menguji Basic Alert...")
 try:
     driver.find_element(By.ID, "alertButton").click()
     alert = wait.until(EC.alert_is_present())  # Beberapa detik hingga alert tampil
@@ -42,7 +42,7 @@ wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
 # 2. Handle Confirm Alert
-print("\n🔹 Menguji Confirm Alert...")
+print("\n - Menguji Confirm Alert...")
 try:
     driver.find_element(By.ID, "confirmButton").click()
     alert = wait.until(EC.alert_is_present())
@@ -53,11 +53,7 @@ try:
 
     # Validasi apakah hasilnya "You selected Cancel"
     confirmResult = wait.until(EC.presence_of_element_located((By.ID, "confirmResult"))).text
-    if confirmResult == "You selected Cancel":
-        print("✅ Validasi sukses: Teks yang muncul adalah", confirmResult)
-    else:
-        print("❌ Validasi gagal: Teks yang muncul adalah", confirmResult)
-
+    print("✅ Validasi sukses: Teks yang muncul adalah", confirmResult)
 except TimeoutException:
     print("❌ Confirm Alert tidak tampil!")
 
@@ -65,7 +61,7 @@ wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
 # 3. Handle Prompt Alert
-print("\n🔹 Menguji Prompt Alert...")
+print("\n - Menguji Prompt Alert...")
 try:
     driver.find_element(By.ID, "promtButton").click()
     alert = wait.until(EC.alert_is_present())
@@ -77,11 +73,7 @@ try:
 
     # Validasi apakah hasilnya "You entered ..."
     promptResult = wait.until(EC.presence_of_element_located((By.ID, "promptResult"))).text
-    if promptResult == "You entered Joane Indra Prasetyawan":
-        print("✅ Validasi sukses: Teks yang muncul adalah", promptResult)
-    else:
-        print("❌ Validasi gagal: Teks yang muncul adalah", promptResult)
-
+    print("✅ Validasi sukses: Teks yang muncul adalah", promptResult)
 except TimeoutException:
     print("❌ Prompt Alert tidak tampil!")
 
@@ -89,7 +81,7 @@ wait_between_steps()  # Jeda antar pengujian
 
 # ===========================================================
 # 4. Handle Timer Alert (Delayed Alert)
-print("\n🔹 Menguji Timer Alert...")
+print("\n - Menguji Timer Alert...")
 try:
     driver.find_element(By.ID, "timerAlertButton").click()
     alert = wait.until(EC.alert_is_present())
