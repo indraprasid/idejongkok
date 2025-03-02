@@ -26,7 +26,7 @@ driver.minimize_window()
 # Looping melalui setiap website
 for site in websites:
     driver.get(site)  # Akses website
-    time.sleep(3)  # Tunggu beberapa detik agar halaman termuat
+    # time.sleep(3)  # Tunggu beberapa detik agar halaman termuat
     
     # Ambil Page Title
     page_title = driver.title
