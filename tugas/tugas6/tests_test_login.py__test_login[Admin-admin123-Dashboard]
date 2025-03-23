@@ -1,7 +1,7 @@
 INFO     WDM:logger.py:11 ====== WebDriver manager ======
 INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
 INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
-INFO     WDM:logger.py:11 Driver [C:\Users\Joane_I601\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+INFO     WDM:logger.py:11 Driver [C:\Users\Joane_I601\.wdm\drivers\chromedriver\win64\134.0.6998.165\chromedriver-win32/chromedriver.exe] found in cache
 INFO     test_login:test_login.py:17 🔄 Memulai pengujian login...
 INFO     test_login:test_login.py:41 ✅ Login berhasil!
 INFO     test_login:test_login.py:59 ✅ Pengujian login selesai.

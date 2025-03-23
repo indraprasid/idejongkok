@@ -20,6 +20,4 @@ pip install pytest-html
 pip install webdriver-manager
 
 - Run:
-pytest -s tests/ → run test tanpa mencetak report.html, namun output dari print() akan tercetak di terminal
-pytest -s tests/ --html=report.html → run test dengan mencetak report.html
-pytest -s tests/ --html=report.html --self-contained-html --log-cli-level=INFO → run test dengan mencetak report.html beserta log nya
+pytest -s

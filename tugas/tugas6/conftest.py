@@ -1,9 +1,9 @@
 import pytest # type: ignore
 import logging
 import re
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+from selenium import webdriver # type: ignore
+from selenium.webdriver.chrome.service import Service # type: ignore
+from selenium.webdriver.chrome.options import Options # type: ignore
 from webdriver_manager.chrome import ChromeDriverManager # type: ignore
 
 @pytest.fixture
