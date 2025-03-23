@@ -12,7 +12,7 @@ python -m venv venv-tugas6
 
 - Aktivasi virtual environment:
 .\venv-tugas6\Scripts\activate
-
+ 
 - Install beberapa dependency yang diperlukan:
 pip install selenium
 pip install pytest
