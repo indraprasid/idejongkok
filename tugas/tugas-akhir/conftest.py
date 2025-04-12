@@ -1,22 +1,30 @@
 import pytest # type: ignore
 import logging
 import re
+
 from selenium import webdriver # type: ignore
 from selenium.webdriver.chrome.service import Service # type: ignore
-from selenium.webdriver.chrome.options import Options # type: ignore
 from webdriver_manager.chrome import ChromeDriverManager # type: ignore
+from selenium.webdriver.chrome.options import Options # type: ignore
 
-@pytest.fixture
-def setup_browser(): # Setup browser untuk setiap test case
+@pytest.fixture(scope="function")
+def browser():
     options = Options()
-    # options.add_argument("--headless")  # Uncomment jika ingin jalankan tanpa UI
+    # options.add_argument("--headless=new")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.implicitly_wait(20)  # Implicit Wait 20 detik
+    driver.get("https://www.saucedemo.com/")
+    driver.implicitly_wait(5)
     driver.maximize_window()
-    
-    yield driver  # Return driver untuk digunakan di test
-    
-    driver.quit()  # Tutup browser setelah pengujian selesai
+    yield driver
+    driver.quit()
+
+@pytest.hookimpl(optionalhook=True)
+def pytest_html_report_title(report):
+    report.title = "Saucedemo Automation Test Report"
+
+@pytest.hookimpl(optionalhook=True)
+def pytest_html_results_summary(prefix, summary, postfix):
+    prefix.extend([f"Project: Saucedemo End to End Test"])
 
 @pytest.fixture(autouse=True)
 def log_test_output(request): # Setup Log Output pada Report HTML di Pytest

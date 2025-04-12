@@ -1,0 +1,7 @@
+INFO     WDM:logger.py:11 ====== WebDriver manager ======
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+INFO     WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+INFO     WDM:logger.py:11 Driver [C:\Users\MTNB1015\.wdm\drivers\chromedriver\win64\135.0.7049.84\chromedriver-win32/chromedriver.exe] found in cache
+INFO     test_endtoend_saucedemo:test_endtoend_saucedemo.py:24 Berhasil login
+INFO     test_endtoend_saucedemo:test_endtoend_saucedemo.py:29 Produk ditambahkan ke cart: ['Sauce Labs Backpack', 'Sauce Labs Fleece Jacket']
+INFO     test_endtoend_saucedemo:test_endtoend_saucedemo.py:49 ✅ Test selesai! Order berhasil dilakukan.
