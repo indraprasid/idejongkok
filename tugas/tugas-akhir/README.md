@@ -1,17 +1,25 @@
-Pengujian otomasi skenario login pada portal https://opensource-demo.orangehrmlive.com menggunakan selenium python dengan Pytest framework dan pytest-html untuk export report dalam format .html.
+Pengujian otomasi skenario end to end pada portal https://saucesdemo.com menggunakan selenium python dengan Pytest framework dan pytest-html untuk export report dalam format html.
 
 Struktur:
-project/ (i.e. tugas6)
+project/
+├── conftest.py
 ├── tests/
-│   ├── test_login.py  # File test menggunakan setup_browser yang telah di-set pada file conftest.py
-├── conftest.py        # Fixture pytest global (nama file harus "conftest" agar fixture pytest bisa terbaca)
-├── pytest.ini         # (opsional)
+│   └── test_endtoend_saucedemo.py
+├── pages/
+│   ├── cart.py
+│   ├── checkout_complete.py
+│   ├── checkout_info.py
+│   ├── checkout_overview.py
+│   ├── inventory.py
+│   ├── locators.py
+│   └── login.py 
+└── reports/
 
 - Install virtual environment:
-python -m venv venv-tugas6
+python -m venv venv-tugas-akhir
 
 - Aktivasi virtual environment:
-.\venv-tugas6\Scripts\activate
+.\venv-tugas-akhir\Scripts\activate
  
 - Install beberapa dependency yang diperlukan:
 pip install selenium
